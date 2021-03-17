@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 
-from testsupport import test_root, ensure_download
-from pathlib import Path
 import gzip
 import os
 import shutil
+from pathlib import Path
+
+from testsupport import ensure_download, test_root
 
 URL_PREFIX = "https://github.com/Mic92/wiki-topics/releases/download/assets/"
 

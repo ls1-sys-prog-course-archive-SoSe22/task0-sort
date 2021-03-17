@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 
-from testsupport import run_project_executable, run, assert_executable, info, warn
-from wiki import download_wiki
-from tempfile import TemporaryDirectory
-from pathlib import Path
 import sys
+from pathlib import Path
+from tempfile import TemporaryDirectory
+
+from testsupport import assert_executable, info, run, run_project_executable, warn
+from wiki import download_wiki
 
 
 def main() -> None:
