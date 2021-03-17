@@ -3,19 +3,17 @@
 import sys
 from pathlib import Path
 from tempfile import TemporaryDirectory
-import subprocess
 from shlex import quote
 from typing import Any, IO
 
 from testsupport import (
-    assert_executable,
-    info,
+    subtest,
     run,
     warn,
     project_path,
     find_executable,
 )
-from wiki import download_wiki
+from sorttest_helpers import download_wiki, ensure_dependencies
 
 
 def run_with_ulimit(exe: str, stdin: IO[Any], stdout: IO[Any]) -> None:
@@ -33,8 +31,7 @@ def run_with_ulimit(exe: str, stdin: IO[Any], stdout: IO[Any]) -> None:
 def main() -> None:
     path = download_wiki("en-latest-all-titles-in")
 
-    assert_executable("sort", "This test requires 'sort' command line tool")
-    assert_executable("cmp", "This test requires 'cmp' command line tool")
+    ensure_dependencies()
 
     own_sort_exe = find_executable("sort", project_path())
     if own_sort_exe is None:
@@ -46,30 +43,16 @@ def main() -> None:
         coreutils_sort = temp_path.joinpath(path.name + ".coreutils-sort")
         own_sort = temp_path.joinpath(path.name + ".own-sort")
 
-        info("Run coreutils sort...")
-        with open(path) as stdin, open(coreutils_sort, "w") as stdout:
-            run_with_ulimit("sort", stdin, stdout)
-        info("OK")
+        with subtest("Run coreutils sort"):
+            with open(path) as stdin, open(coreutils_sort, "w") as stdout:
+                run_with_ulimit("sort", stdin, stdout)
 
-        info("Run own sort...")
-        try:
+        with subtest("Run own sort"):
             with open(path) as stdin, open(own_sort, "w") as stdout:
                 run_with_ulimit("sort", stdin, stdout)
-        except OSError as e:
-            warn(f"Failed to run command: {e}")
-            info("FAIL")
-            sys.exit(1)
-        info("OK")
 
-        info("Check if both results matches")
-        try:
+        with subtest("Check if both results matches"):
             run(["cmp", str(coreutils_sort), str(own_sort)])
-        except subprocess.CalledProcessError as e:
-            warn(f"coreutils sort and own sort produce different output: {e}")
-            info("FAIL")
-            sys.exit(1)
-
-        info("OK")
 
 
 if __name__ == "__main__":

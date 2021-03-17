@@ -5,9 +5,14 @@ import os
 import shutil
 from pathlib import Path
 
-from testsupport import ensure_download, test_root
+from testsupport import ensure_download, test_root, assert_executable
 
 URL_PREFIX = "https://github.com/Mic92/wiki-topics/releases/download/assets/"
+
+
+def ensure_dependencies() -> None:
+    assert_executable("sort", "This test requires 'sort' command line tool")
+    assert_executable("cmp", "This test requires 'cmp' command line tool")
 
 
 def download_wiki(name: str) -> Path:
