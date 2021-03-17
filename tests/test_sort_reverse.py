@@ -24,7 +24,10 @@ def main() -> None:
         with subtest("Run coreutils sort..."):
             with open(path) as stdin, open(coreutils_sort, "w") as stdout:
                 run(
-                    ["sort", "-r"], stdin=stdin, stdout=stdout, extra_env=dict(LC_ALL="C")
+                    ["sort", "-r"],
+                    stdin=stdin,
+                    stdout=stdout,
+                    extra_env=dict(LC_ALL="C"),
                 )
 
         with subtest("Run own sort..."):
