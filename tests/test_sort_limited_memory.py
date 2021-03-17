@@ -43,11 +43,11 @@ def main() -> None:
         coreutils_sort = temp_path.joinpath(path.name + ".coreutils-sort")
         own_sort = temp_path.joinpath(path.name + ".own-sort")
 
-        with subtest("Run coreutils sort"):
+        with subtest("Run coreutils sort with 128MB limit"):
             with open(path) as stdin, open(coreutils_sort, "w") as stdout:
                 run_with_ulimit("sort", stdin, stdout)
 
-        with subtest("Run own sort"):
+        with subtest("Run own sort with 128MB limit"):
             with open(path) as stdin, open(own_sort, "w") as stdout:
                 run_with_ulimit("sort", stdin, stdout)
 
