@@ -1,3 +1,6 @@
+/tests/scowiki-latest-all-titles-in*
+/tests/en-latest-all-titles-in*
+
 # Prerequisites
 *.d
 
