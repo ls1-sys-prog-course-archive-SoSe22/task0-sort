@@ -21,7 +21,7 @@ def main() -> None:
 
         info("Run coreutils sort...")
         with open(path) as stdin, open(coreutils_sort, "w") as stdout:
-            run(["sort"], stdin=stdin, stdout=stdout, extra_env=dict(LANG="C"))
+            run(["sort"], stdin=stdin, stdout=stdout, extra_env=dict(LC_ALL="C"))
         info("OK")
 
         info("Run own sort...")
@@ -36,7 +36,7 @@ def main() -> None:
 
         info("Check if both results matches")
         try:
-            run(["cmp", str(coreutils_sort), str(own_sort)], extra_env=dict(LANG="C"))
+            run(["cmp", str(coreutils_sort), str(own_sort)])
         except OSError as e:
             warn(f"coreutils sort and own sort produce different output: {e}")
             info("FAIL")
