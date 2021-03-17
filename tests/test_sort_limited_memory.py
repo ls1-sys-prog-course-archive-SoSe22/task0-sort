@@ -5,14 +5,12 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 import subprocess
 from shlex import quote
-import resource
 from typing import Any, IO
 
 from testsupport import (
     assert_executable,
     info,
     run,
-    run_project_executable,
     warn,
     project_path,
     find_executable,
@@ -20,7 +18,7 @@ from testsupport import (
 from wiki import download_wiki
 
 
-def run_with_ulimit(exe: str, stdin: IO[Any], stdout: IO[Any]):
+def run_with_ulimit(exe: str, stdin: IO[Any], stdout: IO[Any]) -> None:
     # size is in kilobytes
     size = 128 * 1024
     run(
