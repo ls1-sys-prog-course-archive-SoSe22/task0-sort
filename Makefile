@@ -14,11 +14,11 @@ all:
 
 # C example:
 #all:
-#	$(CC) $(CFLAGS) -o task-name task-name.c
+#	$(CC) $(CFLAGS) -o sort sort.c
 
 # C++ example:
 #all:
-#	$(CXX) $(CXXFLAGS) -o task-name task-name.cpp
+#	$(CXX) $(CXXFLAGS) -o sort sort.cpp
 
 # Rust example:
 #all:
