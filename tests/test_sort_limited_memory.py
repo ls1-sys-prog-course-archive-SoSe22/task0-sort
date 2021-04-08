@@ -49,7 +49,7 @@ def main() -> None:
 
         with subtest("Run own sort with 128MB limit"):
             with open(path) as stdin, open(own_sort, "w") as stdout:
-                run_with_ulimit("sort", stdin, stdout)
+                run_with_ulimit(own_sort_exe, stdin, stdout)
 
         with subtest("Check if both results matches"):
             run(["cmp", str(coreutils_sort), str(own_sort)])
