@@ -71,14 +71,14 @@ byte-wise. The program will be called like this:
 ./sort < input-file
 ```
 
-2. Further more you program should accept a flag as the first argument on command line `-r` which
+2. Further more your program should accept a flag as the first argument on command line `-r` which
 will reverse the output
 
 ``` console
 ./sort -r < input-file
 ```
 
-3. Further more make sure your program can also sort its input using a fixed amount of memory.
+3. Make sure your program can also sort its input using a fixed amount of memory.
 We will test your program by applying by `ulimit -v 131072` in its parent shell,
 which will limit the program to 128MB:
 
