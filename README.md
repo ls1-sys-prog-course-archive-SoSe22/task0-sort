@@ -54,10 +54,15 @@ $ make check
 
 - All tasks use https://github.com/ls1-sys-prog-course-internal/task-template as a template
 
-For the rare occassions that bugs experienced in the online test system but not
+For the rare occassions that bugs experienced in the CI but not
 locally, it is also possible to run the github action environment locally with
-using [act](https://github.com/nektos/act) using the `Large docker image`.
+using [docker](https://www.docker.com/) using this [container
+image](https://github.com/orgs/ls1-sys-prog-course-internal/packages/container/package/ls1-runner):
 
+``` console
+# This will mount your current directory as /code into the container
+ docker run -ti --entrypoint=/bin/bash -v $(pwd):/code --rm ghcr.io/ls1-sys-prog-course-internal/ls1-runner:latest
+```
 
 ## The assignment for this week
 
@@ -72,7 +77,7 @@ byte-wise. The program will be called like this:
 ```
 
 2. Further more your program should accept a flag as the first argument on command line `-r` which
-will reverse the output
+will reverse the output (sort in descending order):
 
 ``` console
 ./sort -r < input-file
@@ -80,7 +85,7 @@ will reverse the output
 
 3. Make sure your program can also sort its input using a fixed amount of memory.
 We will test your program by applying by `ulimit -v 131072` in its parent shell,
-which will limit the program to 128MB:
+which will limit the program to 128MiB:
 
 ``` console
 bash -c 'ulimit -v 131072; ./sort < input-file'
@@ -90,12 +95,13 @@ bash -c 'ulimit -v 131072; ./sort < input-file'
 
 ### 1. Test: tests/test_sort.py
 
-TODO
+Your program output is compared against `sort` from coreutils using scotish wikipedia article names dataset as an input.
 
 ### 2. Test: tests/test_sort_reverse.py
 
-TODO
+Your program output is compared against `sort -r` from coreutils using Scotish wikipedia article names dataset as an input.
 
 ### 3. Test: tests/test_sort_limited_memory.py
 
-TODO
+Your program output is compared against `sort` from coreutils using English wikipedia article names dataset,
+while the memory is limite to 128MiB.
