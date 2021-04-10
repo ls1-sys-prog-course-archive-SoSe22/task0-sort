@@ -29,7 +29,7 @@ At the time of writing the following set up is installed:
 
 ## Tests
 
-Our tests will lookup exectuables to be in one of the following directories (assuming `./` is the project root):
+Our tests will lookup exectuables in one of the following directories (assuming `./` is the project root):
 
 - `./`
 - `./target/release`
@@ -54,9 +54,9 @@ $ make check
 
 - All tasks use https://github.com/ls1-sys-prog-course-internal/task-template as a template
 
-For the rare occassions that bugs experienced in the CI but not
-locally, it is also possible to run the github action environment locally with
-using [docker](https://www.docker.com/) using this [container
+For the rare occassion that bugs are experienced in the CI but not
+locally, it is also possible to run the github action environment locally
+with [docker](https://www.docker.com/) using this [container
 image](https://github.com/orgs/ls1-sys-prog-course-internal/packages/container/package/ls1-runner):
 
 ``` console
@@ -70,21 +70,21 @@ image](https://github.com/orgs/ls1-sys-prog-course-internal/packages/container/p
 and prints all lines sorted to standard output (also known as stdout) in ascending order.
 For simplicty all test inputs can be assumed
 [ASCII](https://en.wikipedia.org/wiki/ASCII) encoded and the comparison is done
-byte-wise. The program will be called like this:
+byte-wise. The program will be called this:
 
 ``` console
 ./sort < input-file
 ```
 
-2. Further more your program should accept a flag as the first argument on command line `-r` which
-will reverse the output (sort in descending order):
+2. Furthermore, your program should accept a flag as the first argument on command line `-r` which
+will reverse the output (sorted in descending order):
 
 ``` console
 ./sort -r < input-file
 ```
 
 3. Make sure your program can also sort its input using a fixed amount of memory.
-We will test your program by applying by `ulimit -v 131072` in its parent shell,
+We will test your program by applying `ulimit -v 131072` in its parent shell,
 which will limit the program to 128MiB:
 
 ``` console
@@ -95,13 +95,13 @@ bash -c 'ulimit -v 131072; ./sort < input-file'
 
 ### 1. Test: tests/test_sort.py
 
-Your program output is compared against `sort` from coreutils using scotish wikipedia article names dataset as an input.
+Your program output is compared against `sort` from coreutils using Scottish wikipedia article names dataset as an input.
 
 ### 2. Test: tests/test_sort_reverse.py
 
-Your program output is compared against `sort -r` from coreutils using Scotish wikipedia article names dataset as an input.
+Your program output is compared against `sort -r` from coreutils using Scottish wikipedia article names dataset as an input.
 
 ### 3. Test: tests/test_sort_limited_memory.py
 
 Your program output is compared against `sort` from coreutils using English wikipedia article names dataset,
-while the memory is limite to 128MiB.
+while the memory is limited to 128MiB.
