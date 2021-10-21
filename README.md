@@ -23,9 +23,9 @@ tests.
 The github build environment comes with all tools for building C, C++ and Rust pre-installed.
 At the time of writing the following set up is installed:
 
-- C/C++ compilers: gcc (different versions from 7. to 10 i.e. gcc-10), clang 6-9
-- C/C++ build systems: cmake: 3.19.6 autoconf: 2.69, automake: 1.15.1
-- Rust compiler/build system: rustc / cargo: 1.51.0
+- C/C++ compilers: gcc 10.3.0
+- C/C++ build systems: cmake: 3.16.3 autoconf: 2.69, automake: 1.16.1
+- Rust compiler/build system: rustc / cargo: 1.55.0
 
 ## Tests
 
@@ -51,8 +51,6 @@ For convenience our Makefile also comes with `check` target which will run all t
 ```console
 $ make check
 ```
-
-- All tasks use https://github.com/ls1-sys-prog-course-internal/task-template as a template
 
 For the rare occassion that bugs are experienced in the CI but not
 locally, it is also possible to run the github action environment locally
