@@ -55,7 +55,7 @@ $ make check
 For the rare occassion that bugs are experienced in the CI but not
 locally, it is also possible to run the github action environment locally
 with [docker](https://www.docker.com/) using this [container
-image](https://github.com/orgs/ls1-sys-prog-course-internal/packages/container/package/ls1-runner):
+image](https://github.com/orgs/ls1-courses/packages/container/package/ls1-runner):
 
 ``` console
 # This will mount your current directory as /code into the container
